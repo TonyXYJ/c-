@@ -57,8 +57,8 @@ int main()
 	}
 	for(int l=0;l<k;l++)
 		supersum=supersum+m[l];
-	cout<<"³¬¼¶ËØÊýµÄ¸öÊý£º"<<k<<endl;
-	cout<<"³¬¼¶ËØÊýµÄºÍ£º"<<supersum<<endl;
-	cout<<"×î´óµÄ³¬¼¶ËØÊý£º"<<m[k-1];	
+	cout<<"è¶…çº§ç´ æ•°çš„ä¸ªæ•°ï¼š"<<k<<endl;
+	cout<<"è¶…çº§ç´ æ•°çš„å’Œï¼š"<<supersum<<endl;
+	cout<<"æœ€å¤§çš„è¶…çº§ç´ æ•°ï¼š"<<m[k-1];	
 	return 0; 
 }
