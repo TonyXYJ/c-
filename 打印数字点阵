@@ -1,0 +1,177 @@
+#include<stdio.h>
+#include<string.h>
+#include<math.h>
+char a[7][70]={
+               "*****      *  *****  *****  *   *  *****  *****  *****  *****  *****  ",
+	           "*   *      *      *      *  *   *  *      *          *  *   *  *   *  ",
+			   "*   *      *      *      *  *   *  *      *          *  *   *  *   *  ",
+			   "*   *      *  *****  *****  *****  *****  *****      *  *****  *****  ",
+			   "*   *      *  *          *      *      *  *   *      *  *   *      *  ",
+			   "*   *      *  *          *      *      *  *   *      *  *   *      *  ",
+			   "*****      *  *****  *****      *  *****  *****      *  *****  *****  "
+			   };
+int main()
+{
+	int n,i,m,h,y;
+	char b[20];
+	scanf("%d\n",&n);
+	for(i=0;i<n;i++)
+	{
+		int num=0;
+		fgets(b,20,stdin);
+		int q,e,l,d,j,k;
+		l=(strlen(b)-1)*5+(strlen(b)-1)*2;
+		int l1=strlen(b)-2;
+		char c[7][l];
+		for(d=0;d<strlen(b);d++)
+		{
+			int f,g=0;
+			if(b[d]-48==0)
+			{
+				for(j=0;j<7;j++)
+				{
+					int f=d*7;
+					for(k=0;k<7;k++)
+					{
+						c[g][f]=a[j][k];
+						f++;
+					}
+					g++;
+				}
+			}
+			else if(b[d]-48==1)
+			{
+				for(j=0;j<7;j++)
+				{
+					int f=d*7;
+					for(k=7;k<14;k++)
+					{
+						c[g][f]=a[j][k];
+						f++;
+					}
+					g++;
+				}
+			}
+			else if(b[d]-48==2)
+			{
+				for(j=0;j<7;j++)
+				{
+					int f=d*7;
+					for(k=14;k<21;k++)
+					{
+						c[g][f]=a[j][k];
+						f++;
+					}
+					g++;
+				}
+			}
+			else if(b[d]-48==3)
+			{
+				for(j=0;j<7;j++)
+				{
+					int f=d*7;
+					for(k=21;k<28;k++)
+					{
+						c[g][f]=a[j][k];
+						f++;
+					}
+					g++;
+				}
+			}
+			else if(b[d]-48==4)
+			{
+				for(j=0;j<7;j++)
+				{
+					int f=d*7;
+					for(k=28;k<35;k++)
+					{
+						c[g][f]=a[j][k];
+						f++;
+					}
+					g++;
+				}
+			}
+			else if(b[d]-48==5)
+			{
+				for(j=0;j<7;j++)
+				{
+					int f=d*7;
+					for(k=35;k<42;k++)
+					{
+						c[g][f]=a[j][k];
+						f++;
+					}
+					g++;
+				}
+			}
+			else if(b[d]-48==6)
+			{
+				for(j=0;j<7;j++)
+				{
+					int f=d*7;
+					for(k=42;k<49;k++)
+					{
+						c[g][f]=a[j][k];
+						f++;
+					}
+					g++;
+				}
+			}
+			else if(b[d]-48==7)
+			{
+				for(j=0;j<7;j++)
+				{
+					int f=d*7;
+					for(k=49;k<56;k++)
+					{
+						c[g][f]=a[j][k];
+						f++;
+					}
+					g++;
+				}
+			}
+			else if(b[d]-48==8)
+			{
+				for(j=0;j<7;j++)
+				{
+					int f=d*7;
+					for(k=56;k<63;k++)
+					{
+						c[g][f]=a[j][k];
+						f++;
+					}
+					g++;
+				}
+			}
+			else if(b[d]-48==9)
+			{
+				for(j=0;j<7;j++)
+				{
+					int f=d*7;
+					for(k=63;k<70;k++)
+					{
+						c[g][f]=a[j][k];
+						f++;
+					}
+					g++;
+				}
+			}
+		}
+		for(h=0;h<strlen(b)-1;h++)
+		{
+			num=num+(b[h]-48)*pow(10,l1);
+			l1--;
+			if(l1<0)
+			break;
+		}
+		printf("%d:\n",num);
+		for(q=0;q<7;q++)
+		{
+			for(e=0;e<l;e++)
+			{
+				printf("%c",c[q][e]);
+			}
+			printf("\n");
+		}
+	}
+}
