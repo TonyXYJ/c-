@@ -1,0 +1,70 @@
+#include<iostream>
+using namespace std;
+class Square
+{
+	public:
+		Square(); 
+		Square(double s);
+		Square(Square &obj);
+		Square Add(Square s1,Square s2);
+		~Square();
+		double Getside();
+		double GetS();
+		double GetC();
+		void show();
+	private:
+		double side;
+};
+
+Square::Square()
+{
+	
+}
+Square::Square(double sa)
+{
+	side=sa;
+}
+Square::Square(Square &obj)
+{
+	side=obj.side;
+}
+Square Square::Add(Square s1,Square s2)
+{
+	this->side=s1.side+s2.side;
+	return (*this);
+}
+Square::~Square()
+{
+	cout<<"正在析构函数"<<side<<endl; 
+}
+double Square::Getside()
+{
+	return side;
+}
+double Square::GetC()
+{
+	return 4*side;
+}
+double Square::GetS()
+{
+	return side*side;
+}
+void Square::show()
+{
+	cout<<"正方形的周长是："<<Square::GetC()<<endl;
+	cout<<"正方形的面积是："<<Square::GetS()<<endl;
+}
+
+int main()
+{
+	Square *S=new Square(5);
+	S->show();
+	Square s1(4);
+	s1.show();
+	Square s2(s1);
+	s2.show();
+	Square s3;
+	s3.Add(s1,s2);
+	s3.show();
+	return 0;
+}
