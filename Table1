@@ -1,136 +1,97 @@
 #include<iostream>
-#include<vector>
-#include<string>
+#include <string>
+#include <sstream>
 using namespace std;
-class Cell 
+string a[1000][1000];
+class Table
 {
-public:
-	Cell() = default;
-	Cell(string con) : content(con) {}
-	~Cell() = default;
-	void show() const;
-	void set(string con);
-private:
-	string content = "       ";
-};
-class Table 
-{
-public:
-	Table() 
-	{
-		vector<Cell> tcol;
-		tcol.push_back(Cell());
-		cells.push_back(tcol);
-	}
-	Table(int x, int y) :col(x), row(y) 
-	{
-		for (int j = 0; j < row; j++) 
+	protected:
+		int row;
+		int column;
+	public:
+		Table()
 		{
-			vector<Cell> *trow = new vector<Cell>(col);
-			for (int i = 0; i < col; i++) 
+			row=1;
+			column=1;
+		}
+		void show()
+		{
+			for(int i=0;i<row;i++)
 			{
-				trow->push_back(Cell());
+				for(int j=0;j<column;j++)
+				{
+					cout<<a[i][j]<<" ";
+				}
+				cout<<"\n";
 			}
-			cells.push_back(*trow);
+		    cout<<"\n";	
 		}
-
-	}
-	~Table() 
-	{
-		for (int i = 0; i < row; i++)
-			//	delete &cells[i];
-			;
-	}
-	void show();
-	int addRow();
-	void delRow(int n);
-	int addColumn();
-	void delColumn(int n);
-	void set(int, int, string);
-	void set(int, int, int);
-private:
-	vector<vector<Cell> > cells;
-	int col = 1;
-	int row = 1;
-};
-void Table::show() 
-{
-	for (int i = 0; i < row; i++) 
-	{
-		for (int j = 0; j < col; j++) 
+		void addRow()
 		{
-			cells[i][j].show();
+			row=row++;
 		}
-		cout << endl;
-	}
-}
-int Table::addRow() 
-{
-	vector<Cell> *trow = new vector<Cell>(col);
-	for (int i = 0; i < col; i++) 
-	{
-		trow->push_back(Cell());
-	}
-	cells.push_back(*trow);
-	row += 1;
-	return row;
-}
-void Table::delRow(int n) 
-{
-	//delete &cells[n-1];
-	cells.erase(cells.begin() + n - 1);
-	row--;
-}
-int Table::addColumn() 
-{
-	for (int i = 0; i < row; i++) 
-	{
-		cells[i].push_back(Cell());
-	}
-	col += 1;
-	return col;
-}
-void Table::delColumn(int n) 
-{
-	for (int i = 0; i < row; i++) 
-	{
-		cells[i].erase(cells[i].begin() + n - 1);
-	}
-	col--;
-}
-void Table::set(int y, int x, string con) 
-{
-	cells[y - 1][x - 1].set(con);
-}
-void Table::set(int y, int x, int con) 
-{
-	string scon = to_string(con);
-	cells[y - 1][x - 1].set(scon);
-}
-void Cell::show() const 
-{
-	cout << content << " ";
-}
-void Cell::set(string con) 
-{
-	content = con;
-}
+		void addColumn()
+		{
+			column=column++;
+		}
+		Table(int x,int y)
+		{
+			row=x;
+			column=y;
+		}
+		void set(int x,int y,int z)
+		{
+			stringstream ss;
+			string u;
+			ss<<z;
+			ss>>u;
+			a[x][y]=u;
+		}
+		void set(int x,int y,string z)
+		{
+			a[x][y]=z;
+		}
+		void delRow(int i)
+		{//é?3yμúiDD 
+			 for(int j=i;j<row-1;j++)
+			 {
+			 	string *p=a[j];
+			 	*a[j]=*a[j+1];
+				*a[j+1]=*p;
+			 }
+			 row--;
+		} 
+		void delColumn(int i)
+		{
+			for(int j=i;j<column-1;j++)
+			{
+				for(int k=0;k<row-1;k++)
+				{
+					string p=a[j][k];
+					a[j][k]=a[j][k+1];
+					a[j][k+1]=p;
+				}
+			}
+			column--;
+		}
+};
+
 int main() 
 {
-	Table tb;
-	tb.show();
-	tb.addRow();
-	tb.show();
-	tb.addColumn();
-	tb.show();
-	Table tb1(5, 5);
-	tb1.show();
-	tb1.set(1, 1, 30);
-	tb1.set(2, 2, "hello");
-	tb1.show();
-	tb1.delRow(1);
-	tb1.show();
-	tb1.delColumn(1);
-	tb1.show();
-	return 0;
+  Table tb; 
+  tb.show();
+  tb.addRow();
+  tb.show();
+  tb.addColumn();
+  tb.show();
+  Table tb1(5,5);
+  tb1.show();
+  tb1.set(1,1,30);
+  tb1.set(2,2,"hello");
+  tb1.show();
+  tb1.delRow(1);
+  tb1.show();
+  tb1.delColumn(1);
+  tb1.show();
+  return 0;
 }
